@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GBGraphics.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "input\\example.png"
+    }
+  }
+}
