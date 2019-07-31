@@ -1,4 +1,4 @@
-# Displaying images on a Game Boy using `gbgfx` and [RGBDS](https://github.com/rednex/rgbds)
+# Building a Game Boy ROM to display images
 ## Prepare the graphics
 [Install RGBDS](https://github.com/rednex/rgbds/releases) and use it in conjunction with `gbgfx`:
 ```

@@ -11,7 +11,7 @@ gbgfx [-r] [-o output.png] input.png
 
 `-r`
 
-&nbsp;&nbsp;&nbsp;Resize the output image to fit the Game Boy's screen (160 x 144 pixels).
+&nbsp;&nbsp;&nbsp;&nbsp;Resize the output image to fit the Game Boy's screen (160 x 144 pixels).
 
 `-o outfile`
 
