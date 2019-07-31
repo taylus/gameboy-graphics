@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using SixLabors.ImageSharp;
 
 namespace GBGraphics
@@ -12,7 +13,7 @@ namespace GBGraphics
         /// </summary>
         public static void Main(string[] args)
         {
-            ParseCommandLineArgs(args, out string convertedImagePath, out string sourceImagePath);
+            ParseCommandLineArgs(args, out string convertedImagePath, out string sourceImagePath, out bool resize);
             if (sourceImagePath == null || convertedImagePath == null) return;
 
             if (!File.Exists(sourceImagePath))
@@ -23,17 +24,27 @@ namespace GBGraphics
 
             using (var sourceImage = Image.Load(sourceImagePath))
             {
+                if (resize)
+                {
+                    var resizer = new ImageResizer(sourceImage);
+                    resizer.Resize(GameBoyConstants.ScreenWidth, GameBoyConstants.ScreenHeight);
+                }
+
                 var palette = GameBoyColorPalette.Dmg.ToRgba32();
                 var converter = new ColorConverter(sourceImage, palette, ColorMath.GetClosestColor);
                 var convertedImage = converter.Convert();
+
                 convertedImage.Save(convertedImagePath);
             }
 
             Process.Start(new ProcessStartInfo() { FileName = convertedImagePath, UseShellExecute = true });
         }
 
-        private static void ParseCommandLineArgs(string[] args, out string outFile, out string inFile)
+        private static void ParseCommandLineArgs(string[] args, out string outFile, out string inFile, out bool resize)
         {
+            resize = args.Contains("-r");
+            if (resize) args = args.Where(a => a != "-r").ToArray();
+
             if (args.Length == 1)
             {
                 inFile = args[0];

@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="input\example-large.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="input\example.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

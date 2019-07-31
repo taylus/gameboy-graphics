@@ -2,7 +2,7 @@
   "profiles": {
     "GBGraphics.Console": {
       "commandName": "Project",
-      "commandLineArgs": "input\\example.png"
+      "commandLineArgs": "-r -o example.png input\\example-large.png"
     }
   }
 }
