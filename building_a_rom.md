@@ -21,7 +21,7 @@ Since each tile is 16 bytes (8 x 8 pixels @ 2 bits per pixel), 6 KB allows for s
 
 ![tile blocks in bgb vram viewer](screenshots/vram_viewer_tile_blocks.png "tile blocks in bgb vram viewer")
 
-It would be possible to address all 384 tiles using both sprites and background tiles, but since the Game Boy can only be drawn 10 sprites per scanline, it wouldn't make sense to display images using sprites unless you could be sure most of the image was empty space. Thus, these instructions proceed with displaying the image on the Game Boy's background layer, limiting it to 256 tiles.
+It would be possible to address all 384 tiles using both sprites and background tiles, but since the Game Boy can only draw 10 sprites per scanline, it wouldn't make sense to display images using sprites unless you could be sure most of the image was empty space. Thus, these instructions proceed with displaying the image on the Game Boy's background layer, limiting it to 256 tiles.
 
 ## Build the ROM
 Incorporate the .2bpp and .tileset files produced by `rgbgfx` into [this small program](https://github.com/taylus/gameboy-dev/tree/master/rgbds/02-hello-graphics) which loads and displays background tile and map data using nothing more than simple `memcpy` and `memset` routines.
