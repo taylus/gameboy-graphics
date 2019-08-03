@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace GBGraphics
+namespace GBGraphics.Core
 {
     /// <summary>
     /// Creates an image from a source image using the closest colors in the specified palette.
@@ -13,6 +13,8 @@ namespace GBGraphics
         public Image<Rgba32> SourceImage { get; }
         public IEnumerable<Rgba32> Palette { get; }
         public Func<Rgba32, IEnumerable<Rgba32>, Rgba32> ColorMappingFunction { get; }
+
+        public ColorConverter(Image<Rgba32> sourceImage, IEnumerable<Rgba32> palette) : this(sourceImage, palette, ColorMath.GetClosestColor) { }
 
         public ColorConverter(Image<Rgba32> sourceImage, IEnumerable<Rgba32> palette, Func<Rgba32, IEnumerable<Rgba32>, Rgba32> colorMappingFunction)
         {

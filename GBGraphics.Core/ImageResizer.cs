@@ -4,7 +4,7 @@ using SixLabors.ImageSharp.Processing;
 using SixLabors.ImageSharp.Processing.Processors.Transforms;
 using SixLabors.Primitives;
 
-namespace GBGraphics
+namespace GBGraphics.Core
 {
     /// <summary>
     /// Resizes a source image using the given sampler.

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using GBGraphics.Core;
 using SixLabors.ImageSharp;
 
 namespace GBGraphics
@@ -31,7 +32,7 @@ namespace GBGraphics
                 }
 
                 var palette = GameBoyColorPalette.Dmg.ToRgba32();
-                var converter = new ColorConverter(sourceImage, palette, ColorMath.GetClosestColor);
+                var converter = new ColorConverter(sourceImage, palette);
                 var convertedImage = converter.Convert();
 
                 convertedImage.Save(convertedImagePath);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace GBGraphics
+namespace GBGraphics.Core
 {
     public static class ColorMath
     {
