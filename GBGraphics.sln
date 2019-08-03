@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GBGraphics.Console", "GBGraphics.Console\GBGraphics.Console.csproj", "{340622A9-8579-4B73-B965-6276C55ED774}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBGraphics.Core", "GBGraphics.Core\GBGraphics.Core.csproj", "{E3F1CA65-9261-4745-9D73-9C85C900E369}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GBGraphics.Core", "GBGraphics.Core\GBGraphics.Core.csproj", "{E3F1CA65-9261-4745-9D73-9C85C900E369}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBGraphics.Web", "GBGraphics.Web\GBGraphics.Web.csproj", "{125B1681-FD6A-4E12-91F5-64880AB929D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E3F1CA65-9261-4745-9D73-9C85C900E369}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3F1CA65-9261-4745-9D73-9C85C900E369}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3F1CA65-9261-4745-9D73-9C85C900E369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{125B1681-FD6A-4E12-91F5-64880AB929D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{125B1681-FD6A-4E12-91F5-64880AB929D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{125B1681-FD6A-4E12-91F5-64880AB929D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{125B1681-FD6A-4E12-91F5-64880AB929D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

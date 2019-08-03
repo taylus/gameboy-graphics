@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+
+<div class="box">
+    <p>Choose an image from your computer and I'll display it on this page.</p>
+    <p>The image never leaves your computer, this all happens in your browser.</p>
+    <p><input type="file" accept=".png,.jpg,.jpeg,.gif"></p>
+    <div>
+        <ul id="file-stats">
+            <li>Name: <code id="file-name"></code></li>
+            <li>Size: <code id="file-size"></code></li>
+            <li>Type: <code id="file-type"></code></li>
+            <li><img id="preview"></li>
+        </ul>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+}
