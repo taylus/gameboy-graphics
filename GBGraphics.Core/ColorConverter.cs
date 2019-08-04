@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
@@ -31,6 +32,15 @@ namespace GBGraphics.Core
                 }
             }
             return convertedImage;
+        }
+
+        public MemoryStream Convert(Stream stream, IEnumerable<Rgba32> palette)
+        {
+            using var sourceImage = Image.Load(stream);
+            var convertedImage = Convert(sourceImage, palette);
+            using var convertedStream = new MemoryStream();
+            convertedImage.SaveAsPng(convertedStream);
+            return convertedStream;
         }
     }
 }
