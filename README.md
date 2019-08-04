@@ -4,7 +4,7 @@ Convert images into the Game Boy's color palette -- written in .NET Core using [
 ![sample input](screenshots/example_input.png "sample input")
 ![sample output](screenshots/example_output.png "sample output")
 
-## Usage
+## Command line usage
 ```
 gbgfx [-r] [-o output.png] input.png
 ```
@@ -16,6 +16,11 @@ gbgfx [-r] [-o output.png] input.png
 `-o outfile`
 
 &nbsp;&nbsp;&nbsp;&nbsp;The name of the output file.
+
+## Web application
+Alternatively, run the `GBGraphics.Web` web application for a GUI:
+
+![web app screenshot](screenshots/screenshot_webapp.png "web app screenshot")
 
 ## Displaying images on a Game Boy
 See here for instructions on how to [build a ROM](building_a_rom.md) which displays images produced by `gbgfx`!
