@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }, false);
     });
 
+    //or when the resize checkbox changes while an input file is selected
+    document.getElementById("resize").addEventListener("change", function () {
+        colorizeImage();
+    }, false);
+
     function colorizeImage() {
         var file = input.files[0];
         if (!file) return;
@@ -41,6 +46,9 @@ document.addEventListener("DOMContentLoaded", function () {
             palette.forEach(function (color) {
                 formData.append("colors", color);
             });
+
+            var resize = document.getElementById("resize").checked;
+            formData.append("resize", resize);
 
             return formData;
         }

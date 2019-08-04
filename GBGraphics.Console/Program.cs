@@ -27,8 +27,8 @@ namespace GBGraphics
             {
                 if (resize)
                 {
-                    var resizer = new ImageResizer(sourceImage);
-                    resizer.Resize(GameBoyConstants.ScreenWidth, GameBoyConstants.ScreenHeight);
+                    var resizer = new ImageResizer();
+                    resizer.Resize(sourceImage, GameBoyConstants.ScreenWidth, GameBoyConstants.ScreenHeight);
                 }
 
                 var palette = GameBoyColorPalette.Dmg.ToRgba32();

@@ -34,13 +34,11 @@ namespace GBGraphics.Core
             return convertedImage;
         }
 
-        public MemoryStream Convert(Stream stream, IEnumerable<Rgba32> palette)
+        public MemoryStream ToStream(Image<Rgba32> image)
         {
-            using var sourceImage = Image.Load(stream);
-            var convertedImage = Convert(sourceImage, palette);
-            using var convertedStream = new MemoryStream();
-            convertedImage.SaveAsPng(convertedStream);
-            return convertedStream;
+            using var stream = new MemoryStream();
+            image.SaveAsPng(stream);
+            return stream;
         }
     }
 }

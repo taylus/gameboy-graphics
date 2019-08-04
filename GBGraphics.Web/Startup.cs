@@ -12,6 +12,7 @@ namespace GBGraphics.Web
         {
             services.AddControllersWithViews();
             services.AddTransient<ColorConverter>();
+            services.AddTransient<ImageResizer>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

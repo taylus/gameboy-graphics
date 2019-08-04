@@ -11,32 +11,29 @@ namespace GBGraphics.Core
     /// </summary>
     public class ImageResizer
     {
-        public Image<Rgba32> SourceImage { get; }
         public IResampler Sampler { get; }
 
-        public ImageResizer(Image<Rgba32> sourceImage, IResampler sampler)
+        public ImageResizer(IResampler sampler)
         {
-            SourceImage = sourceImage;
             Sampler = sampler;
         }
 
-        public ImageResizer(Image<Rgba32> sourceImage) : this(sourceImage, KnownResamplers.Bicubic)
+        public ImageResizer() : this(KnownResamplers.Bicubic)
         {
 
         }
 
-        public Image<Rgba32> Resize(int width, int height)
+        public void Resize(Image<Rgba32> image, int width, int height)
         {
-            if (SourceImage.Width != width && SourceImage.Height != height)
+            if (image.Width != width && image.Height != height)
             {
-                SourceImage.Mutate(ctx => ctx.Resize(new ResizeOptions()
+                image.Mutate(ctx => ctx.Resize(new ResizeOptions()
                 {
                     Mode = ResizeMode.Stretch,
                     Sampler = Sampler,
                     Size = new Size(width, height)
                 }));
             }
-            return SourceImage;
         }
     }
 }
