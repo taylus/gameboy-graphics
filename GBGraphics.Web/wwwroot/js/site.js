@@ -4,48 +4,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //colorize the image when the input file changes
     var input = document.querySelector("input[type=file]");
-    input.addEventListener("change", function () {
-        colorizeImage();
-    });
+    input.addEventListener("change", colorizeImage);
 
     //or when the palette changes while an input file is selected
-    document.querySelectorAll("input[type=radio]").forEach(function (radio) {
-        radio.addEventListener("change", function () {
-            colorizeImage();
-        }, false);
+    document.querySelectorAll("input[type=radio]").forEach((radio) => {
+        radio.addEventListener("change", colorizeImage);
     });
 
     //or when the resize checkbox changes while an input file is selected
-    document.getElementById("resize").addEventListener("change", function () {
-        colorizeImage();
-    }, false);
+    document.getElementById("resize").addEventListener("change", colorizeImage);
 
     function colorizeImage() {
         var file = input.files[0];
         if (!file) return;
 
         var screen = document.getElementById("screen");
-        if (screen) {
-            screen.src = "/img/loading-spinner.gif";
-            screen.style.display = "inline";
-        }
+        screen.src = "/img/loading-spinner.gif";
+        screen.style.display = "inline";
+
         fetch("", {
             method: "POST",
             body: buildRequest()
-        }).then(function (response) {
-            return response.blob();
-        }).then(function (response) {
-            if (screen) screen.src = URL.createObjectURL(response);
-        });
+        }).then((response) => response.blob())
+        .then((response) => screen.src = URL.createObjectURL(response));
 
         function buildRequest() {
             var formData = new FormData();
             formData.append("img", file);
 
             var palette = getSelectedColors();
-            palette.forEach(function (color) {
-                formData.append("colors", color);
-            });
+            palette.forEach((color) => formData.append("colors", color));
 
             var resize = document.getElementById("resize").checked;
             formData.append("resize", resize);
@@ -57,23 +45,23 @@ document.addEventListener("DOMContentLoaded", function () {
     //fill color palette labels with their (hidden) color input's color
     //since <input type="color"> looks gross and is largely unstylable
     //https://stackoverflow.com/a/26086382/7512368
-    document.querySelectorAll("label.color-swatch").forEach(function (label) {
+    document.querySelectorAll("label.color-swatch").forEach((label) => {
         var color = label.querySelector("input[type=color]").value;
         label.style.backgroundColor = color;
     });
 
-    document.querySelectorAll("input[type=color]").forEach(function (input) {
+    document.querySelectorAll("input[type=color]").forEach((input) => {
         //update the label's background color when a color input changes
-        input.addEventListener("change", function () {
+        input.addEventListener("change", () => {
             this.parentNode.style.backgroundColor = this.value;
             colorizeImage();
-        }, false);
+        });
 
         //select the "use custom colors" radio button when a color input is clicked
-        input.addEventListener("click", function () {
+        input.addEventListener("click", () => {
             document.getElementById("custom").checked = true;
             colorizeImage();
-        }, false);
+        });
     });
 
     function getSelectedColors() {
@@ -96,4 +84,4 @@ document.addEventListener("DOMContentLoaded", function () {
             ("0" + parseInt(rgb[2], 10).toString(16)).slice(-2) +
             ("0" + parseInt(rgb[3], 10).toString(16)).slice(-2) : '';
     }
-}, false);
+});
