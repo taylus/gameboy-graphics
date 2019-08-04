@@ -13,7 +13,11 @@ div.box {
     padding: 20px;
     margin: 20px auto;
     display: inline-block;
-    min-width: 640px;
+    vertical-align: top;
+}
+
+h1, h2 {
+    margin-top: 0;
 }
 
 #gameboy {
