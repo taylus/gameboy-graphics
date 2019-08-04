@@ -20,6 +20,10 @@ div.gb {
     padding: 10px 10px 10px 11px;
 }
 
+div.filedrop {
+    background-color: lightgray;
+}
+
 h1, h2 {
     margin-top: 0;
 }
