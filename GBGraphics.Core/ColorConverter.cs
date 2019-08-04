@@ -10,28 +10,24 @@ namespace GBGraphics.Core
     /// </summary>
     public class ColorConverter
     {
-        public Image<Rgba32> SourceImage { get; }
-        public IEnumerable<Rgba32> Palette { get; }
         public Func<Rgba32, IEnumerable<Rgba32>, Rgba32> ColorMappingFunction { get; }
 
-        public ColorConverter(Image<Rgba32> sourceImage, IEnumerable<Rgba32> palette) : this(sourceImage, palette, ColorMath.GetClosestColor) { }
+        public ColorConverter() : this(ColorMath.GetClosestColor) { }
 
-        public ColorConverter(Image<Rgba32> sourceImage, IEnumerable<Rgba32> palette, Func<Rgba32, IEnumerable<Rgba32>, Rgba32> colorMappingFunction)
+        public ColorConverter(Func<Rgba32, IEnumerable<Rgba32>, Rgba32> colorMappingFunction)
         {
-            SourceImage = sourceImage;
-            Palette = palette;
             ColorMappingFunction = colorMappingFunction;
         }
 
-        public Image<Rgba32> Convert()
+        public Image<Rgba32> Convert(Image<Rgba32> sourceImage, IEnumerable<Rgba32> palette)
         {
-            var convertedImage = new Image<Rgba32>(SourceImage.Width, SourceImage.Height);
-            for (int y = 0; y < SourceImage.Height; y++)
+            var convertedImage = new Image<Rgba32>(sourceImage.Width, sourceImage.Height);
+            for (int y = 0; y < sourceImage.Height; y++)
             {
-                for (int x = 0; x < SourceImage.Width; x++)
+                for (int x = 0; x < sourceImage.Width; x++)
                 {
-                    var sourcePixel = SourceImage[x, y];
-                    convertedImage[x, y] = ColorMappingFunction(sourcePixel, Palette);
+                    var sourcePixel = sourceImage[x, y];
+                    convertedImage[x, y] = ColorMappingFunction(sourcePixel, palette);
                 }
             }
             return convertedImage;

@@ -1,3 +1,4 @@
+using GBGraphics.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,8 @@ namespace GBGraphics.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddTransient<Base64ImageTranslator>();
+            services.AddTransient<ColorConverter>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

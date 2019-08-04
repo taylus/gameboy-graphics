@@ -32,8 +32,8 @@ namespace GBGraphics
                 }
 
                 var palette = GameBoyColorPalette.Dmg.ToRgba32();
-                var converter = new ColorConverter(sourceImage, palette);
-                var convertedImage = converter.Convert();
+                var converter = new ColorConverter();
+                var convertedImage = converter.Convert(sourceImage, palette);
 
                 convertedImage.Save(convertedImagePath);
             }

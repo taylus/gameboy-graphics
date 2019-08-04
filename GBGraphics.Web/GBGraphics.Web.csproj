@@ -14,4 +14,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0-preview7-19378-04" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GBGraphics.Core\GBGraphics.Core.csproj" />
+  </ItemGroup>
+
 </Project>

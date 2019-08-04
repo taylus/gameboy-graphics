@@ -4,15 +4,14 @@
 }
 
 <div class="box">
-    <p>Choose an image from your computer and I'll display it on this page.</p>
-    <p>The image never leaves your computer, this all happens in your browser.</p>
+    <p>Choose an image from your computer and it will be processed and displayed below, side-by-side with the original.</p>
     <p><input type="file" accept=".png,.jpg,.jpeg,.gif"></p>
     <div>
         <ul id="file-stats">
             <li>Name: <code id="file-name"></code></li>
             <li>Size: <code id="file-size"></code></li>
             <li>Type: <code id="file-type"></code></li>
-            <li><img id="preview"></li>
+            <li><img id="before"><img id="after"></li>
         </ul>
     </div>
 </div>

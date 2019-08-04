@@ -16,10 +16,14 @@ div.box {
     min-width: 640px;
 }
 
-img#preview {
+img#before, img#after {
     margin-top: 4px;
-    max-width: 128px;
-    max-height: 128px;
+    max-width: 256px;
+    max-height: 230px;
+}
+
+img#before {
+    margin-right: 4px;
 }
 
 #file-stats {
