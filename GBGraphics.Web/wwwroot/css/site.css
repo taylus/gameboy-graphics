@@ -16,6 +16,10 @@ div.box {
     vertical-align: top;
 }
 
+div.gb {
+    padding: 10px 10px 10px 11px;
+}
+
 h1, h2 {
     margin-top: 0;
 }
@@ -34,4 +38,21 @@ h1, h2 {
     width: 160px;
     height: 144px;
     display: none;
+}
+
+.color-swatch {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+input[type=color] {
+    visibility: hidden;
+}
+
+input[type=radio] {
+    margin-top: -16px;
+    vertical-align: middle;
 }
