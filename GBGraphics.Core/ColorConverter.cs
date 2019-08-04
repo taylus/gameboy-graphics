@@ -23,12 +23,17 @@ namespace GBGraphics.Core
         public Image<Rgba32> Convert(Image<Rgba32> sourceImage, IEnumerable<Rgba32> palette)
         {
             var convertedImage = new Image<Rgba32>(sourceImage.Width, sourceImage.Height);
+            var cachedColors = new Dictionary<Rgba32, Rgba32>();
             for (int y = 0; y < sourceImage.Height; y++)
             {
                 for (int x = 0; x < sourceImage.Width; x++)
                 {
                     var sourcePixel = sourceImage[x, y];
-                    convertedImage[x, y] = ColorMappingFunction(sourcePixel, palette);
+                    if (!cachedColors.ContainsKey(sourcePixel))
+                    {
+                        cachedColors[sourcePixel] = ColorMappingFunction(sourcePixel, palette);
+                    }
+                    convertedImage[x, y] = cachedColors[sourcePixel];
                 }
             }
             return convertedImage;
