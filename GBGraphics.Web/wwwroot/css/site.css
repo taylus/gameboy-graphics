@@ -16,18 +16,18 @@ div.box {
     min-width: 640px;
 }
 
-img#before, img#after {
-    margin-top: 4px;
-    max-width: 256px;
-    max-height: 230px;
+#gameboy {
+    background-image: url("../img/gameboy-bg.png");
+    width: 295px;
+    height: 487px;
 }
 
-img#before {
-    margin-right: 4px;
-}
-
-#file-stats {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+#screen {
+    position: relative;
+    top: 63px;
+    left: 68px;
+    border-radius: 3px;
+    width: 160px;
+    height: 144px;
+    display: none;
 }
