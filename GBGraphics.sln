@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GBGraphics.Core", "GBGraphi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GBGraphics.Web", "GBGraphics.Web\GBGraphics.Web.csproj", "{125B1681-FD6A-4E12-91F5-64880AB929D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBDev.AzureFunctions", "GBDev.AzureFunctions\GBDev.AzureFunctions.csproj", "{C2D466B1-EE69-47D6-B3AA-7239FF0E1413}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBGraphics.AzureFunctions", "GBGraphics.AzureFunctions\GBGraphics.AzureFunctions.csproj", "{C2D466B1-EE69-47D6-B3AA-7239FF0E1413}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBDev.Core.Test", "GBDev.Core.Test\GBDev.Core.Test.csproj", "{639D74AE-E41D-4A72-957F-7743C34A1A87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBGraphics.Core.Test", "GBGraphics.Core.Test\GBGraphics.Core.Test.csproj", "{639D74AE-E41D-4A72-957F-7743C34A1A87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
