@@ -1,4 +1,4 @@
-﻿namespace GBGraphics
+﻿namespace GBGraphics.Core
 {
     public class GameBoyConstants
     {
