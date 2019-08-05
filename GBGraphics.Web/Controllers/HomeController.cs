@@ -39,8 +39,7 @@ namespace GBGraphics.Web.Controllers
             using var sourceImage = Image.Load(img.OpenReadStream());
             if (resize) resizer.Resize(sourceImage, GameBoyConstants.ScreenWidth, GameBoyConstants.ScreenHeight);
             using var outputImage = converter.Convert(sourceImage, palette);
-            using var outputStream = converter.ToStream(outputImage);
-            return File(outputStream.ToArray(), "image/png");
+            return File(converter.ToBytes(outputImage), "image/png");
         }
     }
 }

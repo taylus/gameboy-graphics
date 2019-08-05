@@ -39,11 +39,11 @@ namespace GBGraphics.Core
             return convertedImage;
         }
 
-        public MemoryStream ToStream(Image<Rgba32> image)
+        public byte[] ToBytes(Image<Rgba32> image)
         {
             using var stream = new MemoryStream();
             image.SaveAsPng(stream);
-            return stream;
+            return stream.ToArray();
         }
     }
 }

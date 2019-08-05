@@ -32,10 +32,7 @@ namespace GBDev.AzureFunctions
             {
                 if (requestModel.Resize) resizer.Resize(sourceImage, GameBoyConstants.ScreenWidth, GameBoyConstants.ScreenHeight);
                 using (var outputImage = converter.Convert(sourceImage, requestModel.Palette))
-                using (var outputStream = converter.ToStream(outputImage))
-                {
-                    return new FileContentResult(outputStream.ToArray(), "image/png");
-                }
+                return new FileContentResult(converter.ToBytes(outputImage), "image/png");
             }
         }
     }
