@@ -9,9 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GBGraphics.Core", "GBGraphi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GBGraphics.Web", "GBGraphics.Web\GBGraphics.Web.csproj", "{125B1681-FD6A-4E12-91F5-64880AB929D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBGraphics.AzureFunctions", "GBGraphics.AzureFunctions\GBGraphics.AzureFunctions.csproj", "{C2D466B1-EE69-47D6-B3AA-7239FF0E1413}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GBGraphics.AzureFunctions", "GBGraphics.AzureFunctions\GBGraphics.AzureFunctions.csproj", "{C2D466B1-EE69-47D6-B3AA-7239FF0E1413}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBGraphics.Core.Test", "GBGraphics.Core.Test\GBGraphics.Core.Test.csproj", "{639D74AE-E41D-4A72-957F-7743C34A1A87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GBGraphics.Core.Test", "GBGraphics.Core.Test\GBGraphics.Core.Test.csproj", "{639D74AE-E41D-4A72-957F-7743C34A1A87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9F63C541-49AE-4CF3-A7C1-D6D524547EC0}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
