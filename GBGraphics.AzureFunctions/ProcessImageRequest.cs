@@ -7,6 +7,8 @@ namespace GBGraphics.AzureFunctions
 {
     internal class ProcessImageRequest
     {
+        private static readonly string[] acceptedMimeTypes = new string[] { "image/jpeg", "image/png", "image/gif", "image/bmp" };
+
         public IFormFile Image { get; set; }
         public IEnumerable<string> Colors { get; set; }
         public IEnumerable<Rgba32> Palette => Colors.Select(c => Rgba32.FromHex(c));
@@ -29,6 +31,8 @@ namespace GBGraphics.AzureFunctions
         {
             var errors = new List<string>();
             if (Image == null) errors.Add($"Request.{nameof(Image)} cannot be null.");
+            if (!acceptedMimeTypes.Contains(Image.ContentType)) errors.Add(
+                $"File is not an accepted type. Expected one of: {string.Join(", ", acceptedMimeTypes)} but received: {Image.ContentType}.");
             if (Colors == null || Colors.Count() == 0) errors.Add($"Request.{nameof(Colors)} cannot be null.");
             if (Colors.Count() < 2) errors.Add("Color palette must be at least two colors.");
             return errors;

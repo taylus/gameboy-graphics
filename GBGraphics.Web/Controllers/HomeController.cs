@@ -33,6 +33,8 @@ namespace GBGraphics.Web.Controllers
         public IActionResult ProcessImage([FromForm] IFormFile img, [FromForm] IEnumerable<string> colors, [FromForm] bool resize = false)
         {
             if (img == null) throw new ArgumentNullException(nameof(img));
+            if (!fileOptions.AcceptedMimeTypes.Contains(img.ContentType)) throw new ArgumentException(
+                $"File is not an accepted type. Expected one of: {string.Join(", ", fileOptions.AcceptedMimeTypes)} but received: {img.ContentType}.");
             if (colors == null) throw new ArgumentNullException(nameof(colors));
             if (colors.Count() < 2) throw new ArgumentException("Color palette must be at least two colors.", nameof(colors));
 

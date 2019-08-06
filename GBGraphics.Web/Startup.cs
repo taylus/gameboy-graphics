@@ -13,7 +13,11 @@ namespace GBGraphics.Web
             services.AddControllersWithViews();
             services.AddTransient<ColorConverter>();
             services.AddTransient<ImageResizer>();
-            services.AddSingleton(new FileUploadOptions() { MaxSizeInBytesBeforeResizing = 1024 * 500 });
+            services.AddSingleton(new FileUploadOptions()
+            {
+                MaxSizeInBytesBeforeResizing = 1024 * 500,
+                AcceptedMimeTypes = new string[] { "image/jpeg", "image/png", "image/gif", "image/bmp" }
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
