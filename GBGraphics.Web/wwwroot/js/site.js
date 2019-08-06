@@ -32,16 +32,15 @@
             fetch("", {
                 method: "POST",
                 body: buildRequest()
-            }).then((response) => response.blob())
-                .then((response) => {
-                    if (response.ok) {
-                        screen.src = URL.createObjectURL(response);
-                    }
-                    else {
-                        screen.removeAttribute("src");
-                        screen.removeAttribute("style");
-                    }
-                });
+            }).then((response) => {
+                if (!response.ok) throw response;
+                return response.blob();
+            }).then((response) => {
+                screen.src = URL.createObjectURL(response);
+            }).catch(() => {
+                screen.removeAttribute("src");
+                screen.removeAttribute("style");
+            });
 
             function buildRequest() {
                 var formData = new FormData();
