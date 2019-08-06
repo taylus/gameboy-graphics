@@ -17,7 +17,7 @@
 
         function colorizeImage(file) {
             if (!file) return;
-            
+
             if (file.size > options.fileSizeLimit) {
                 alert("Please use a file smaller than " + formatSizeForDisplay(options.fileSizeLimit) + ".");
                 return;
@@ -33,7 +33,15 @@
                 method: "POST",
                 body: buildRequest()
             }).then((response) => response.blob())
-                .then((response) => screen.src = URL.createObjectURL(response));
+                .then((response) => {
+                    if (response.ok) {
+                        screen.src = URL.createObjectURL(response);
+                    }
+                    else {
+                        screen.removeAttribute("src");
+                        screen.removeAttribute("style");
+                    }
+                });
 
             function buildRequest() {
                 var formData = new FormData();
