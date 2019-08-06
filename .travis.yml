@@ -1,17 +1,16 @@
-dist: xenial
-addons:
-  snaps:
-  - name: dotnet-sdk
-    classic: true
-    channel: latest/beta
+dist: bionic
 sudo: required
 language: csharp
 mono: none
 script:
+  - sudo snap set system experimental.parallel-instances=true
+  - sudo snap install dotnet-sdk --classic --channel=latest/beta
   - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet build ./GBGraphics.Core/GBGraphics.Core.csproj
   - dotnet build ./GBGraphics.Web/GBGraphics.Web.csproj
   - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+  - sudo snap install dotnet-sdk dotnet-sdk-2 --classic --channel=latest/stable
+  - sudo snap alias dotnet-sdk-2.dotnet dotnet
   - dotnet tool install --global coveralls.net
   - export PATH="$PATH:/home/travis/.dotnet/tools"
   - csmacnz.Coveralls --opencover -i GBGraphics.Core.Test/coverage.opencover.xml --useRelativePaths --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci
