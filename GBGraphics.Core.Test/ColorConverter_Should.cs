@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using GBGraphics.Core;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using Xunit;
 
-namespace GBDev.Core.Test
+namespace GBGraphics.Core.Test
 {
     public class ColorConverter_Should
     {
@@ -17,7 +16,7 @@ namespace GBDev.Core.Test
             Func<Rgba32, IEnumerable<Rgba32>, Rgba32> colorMappingFunction = ColorMath.GetClosestColor;
             var converter = new ColorConverter(colorMappingFunction);
 
-            using var sourceImage = CreateTestImage();
+            using var sourceImage = TestData.CreateTestImage();
             var convertedImage = converter.Convert(sourceImage, palette);
             convertedImage.Size().Should().Be(sourceImage.Size());
             for (int x = 0; x < convertedImage.Width; x++)
@@ -34,7 +33,7 @@ namespace GBDev.Core.Test
         public void Get_Bytes_For_Image()
         {
             var converter = new ColorConverter();
-            using var sourceImage = CreateTestImage();
+            using var sourceImage = TestData.CreateTestImage();
 
             var bytes = converter.ToBytes(sourceImage);
             using var destImage = Image.Load(bytes);
@@ -53,7 +52,5 @@ namespace GBDev.Core.Test
                 }
             }
         }
-
-        private static Image<Rgba32> CreateTestImage() => Image.LoadPixelData(new[] { Rgba32.Red, Rgba32.Green, Rgba32.Blue, Rgba32.Yellow }, 2, 2);
     }
 }

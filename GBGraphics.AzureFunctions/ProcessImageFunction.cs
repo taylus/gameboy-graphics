@@ -9,7 +9,7 @@ using SixLabors.ImageSharp;
 using GBGraphics.Core;
 using System.Diagnostics;
 
-namespace GBDev.AzureFunctions
+namespace GBGraphics.AzureFunctions
 {
     public static class ProcessImageFunction
     {

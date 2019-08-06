@@ -3,7 +3,7 @@ using SixLabors.ImageSharp.PixelFormats;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GBDev.AzureFunctions
+namespace GBGraphics.AzureFunctions
 {
     internal class ProcessImageRequest
     {
