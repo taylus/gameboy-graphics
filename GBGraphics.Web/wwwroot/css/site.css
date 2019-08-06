@@ -53,7 +53,10 @@ h1, h2 {
 }
 
 input[type=color] {
-    visibility: hidden;
+    /* use opacity: 0 since mobile Safari won't activate a
+     visibility: hidden or display: none input when you tap the label:
+     https://stackoverflow.com/a/11471224/7512368 */
+    opacity: 0;
 }
 
 input[type=radio] {
