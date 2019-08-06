@@ -9,7 +9,6 @@ language: csharp
 mono: none
 script:
   - sudo snap alias dotnet-sdk.dotnet dotnet
-  - dotnet build
+  - dotnet build ./GBGraphics.Core/GBGraphics.Core.csproj
+  - dotnet build ./GBGraphics.Web/GBGraphics.Web.csproj
   - dotnet test
-
- 
