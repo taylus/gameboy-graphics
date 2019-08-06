@@ -33,5 +33,16 @@ namespace GBDev.AzureFunctions
             if (Colors.Count() < 2) errors.Add("Color palette must be at least two colors.");
             return errors;
         }
+
+        public override string ToString()
+        {
+            return $"Image: {{{ImageDebugToString()}}}, Colors: [{string.Join(", ", Colors)}], Resize: {Resize}";
+        }
+
+        private string ImageDebugToString()
+        {
+            if (Image == null) return "null";
+            return $"{Image.FileName}, {Image.Length} bytes, {Image.ContentType}";
+        }
     }
 }

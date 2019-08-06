@@ -13,11 +13,13 @@ namespace GBGraphics.Web.Controllers
     {
         private readonly ColorConverter converter;
         private readonly ImageResizer resizer;
+        private readonly FileUploadOptions fileOptions;
 
-        public HomeController(ColorConverter converter, ImageResizer resizer)
+        public HomeController(ColorConverter converter, ImageResizer resizer, FileUploadOptions fileOptions)
         {
             this.converter = converter;
             this.resizer = resizer;
+            this.fileOptions = fileOptions;
         }
 
         [HttpGet("/")]
@@ -37,7 +39,10 @@ namespace GBGraphics.Web.Controllers
             var palette = colors.Select(c => Rgba32.FromHex(c));
 
             using var sourceImage = Image.Load(img.OpenReadStream());
-            if (resize) resizer.Resize(sourceImage, GameBoyConstants.ScreenWidth, GameBoyConstants.ScreenHeight);
+            if (resize || img.Length > fileOptions.MaxSizeInBytesBeforeResizing)
+            {
+                resizer.Resize(sourceImage, GameBoyConstants.ScreenWidth, GameBoyConstants.ScreenHeight);
+            }
             using var outputImage = converter.Convert(sourceImage, palette);
             return File(converter.ToBytes(outputImage), "image/png");
         }
