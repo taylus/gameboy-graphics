@@ -11,4 +11,7 @@ script:
   - sudo snap alias dotnet-sdk.dotnet dotnet
   - dotnet build ./GBGraphics.Core/GBGraphics.Core.csproj
   - dotnet build ./GBGraphics.Web/GBGraphics.Web.csproj
-  - dotnet test
+  - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+  - dotnet tool install --global coveralls.net
+  - export PATH="$PATH:/home/travis/.dotnet/tools"
+  - csmacnz.Coveralls --opencover -i GBGraphics.Core.Test/coverage.opencover.xml --useRelativePaths --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci
