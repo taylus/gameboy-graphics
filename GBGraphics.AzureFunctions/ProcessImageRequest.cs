@@ -31,10 +31,10 @@ namespace GBGraphics.AzureFunctions
         {
             var errors = new List<string>();
             if (Image == null) errors.Add($"Request.{nameof(Image)} cannot be null.");
-            if (!acceptedMimeTypes.Contains(Image.ContentType)) errors.Add(
+            if (Image != null && !acceptedMimeTypes.Contains(Image.ContentType)) errors.Add(
                 $"File is not an accepted type. Expected one of: {string.Join(", ", acceptedMimeTypes)} but received: {Image.ContentType}.");
             if (Colors == null || Colors.Count() == 0) errors.Add($"Request.{nameof(Colors)} cannot be null.");
-            if (Colors.Count() < 2) errors.Add("Color palette must be at least two colors.");
+            if (Colors != null && Colors.Count() < 2) errors.Add("Color palette must be at least two colors.");
             return errors;
         }
 

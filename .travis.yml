@@ -3,5 +3,8 @@ mono: none
 dotnet: 2.2.401
 
 script:
- - dotnet --version
- - dotnet --list-sdks
+ - dotnet build
+ - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+ - dotnet tool install --global coveralls.net
+ - export PATH="$PATH:/home/travis/.dotnet/tools"
+ - csmacnz.Coveralls --opencover -i GBGraphics.Core.Test/coverage.opencover.xml --useRelativePaths --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci
