@@ -1,14 +1,103 @@
 ﻿@page "/"
+@inject IJSRuntime jsRuntime
+@inject Base64ImageTranslator  translator
+@inject ColorConverter  converter
+@inject ImageResizer  resizer
 
-<h1>Hello, world! @currentCount</h1>
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<div class="box">
+    <h2>Game Boy Graphics Toy</h2>
+    <p>Choose an image from your computer and it will be recolored and displayed here.</p>
+    <p>The image never leaves your computer -- this all happens in your browser --<br/>but select a small image (under 75 KB) for performance reasons.</p>
+    <p>This project is <a href="https://github.com/taylus/gameboy-graphics">open-source</a> and part of my work in <a href="https://github.com/taylus/gameboy-dev">Game Boy development</a>.</p>
+    <form>
+        <fieldset>
+            <legend>Choose a color palette:</legend>
+            <div>
+                <input type="radio" name="palette" value="green" id="green" checked>
+                <label for="green" title="Original Green">
+                    <span class="color-swatch" style="background-color:#e0f8d0"></span><span class="color-swatch" style="background-color:#88c070"></span><span class="color-swatch" style="background-color:#346856"></span><span class="color-swatch" style="background-color:#081820"></span>
+                </label>
+                <div>
+                    <input type="radio" name="palette" value="gray" id="gray">
+                    <label for="gray" title="Grayscale">
+                        <span class="color-swatch" style="background-color:#e8e8e8"></span><span class="color-swatch" style="background-color:#a0a0a0"></span><span class="color-swatch" style="background-color:#585858"></span><span class="color-swatch" style="background-color:#101010"></span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="palette" value="brown" id="brown">
+                    <label for="brown" title="Boring Brown">
+                        <span class="color-swatch" style="background-color:#f8e088"></span><span class="color-swatch" style="background-color:#d8af58"></span><span class="color-swatch" style="background-color:#987838"></span><span class="color-swatch" style="background-color:#322710"></span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="palette" value="red" id="red">
+                    <label for="red" title="Fiery Red">
+                        <span class="color-swatch" style="background-color:#fce8e8"></span><span class="color-swatch" style="background-color:#e63232"></span><span class="color-swatch" style="background-color:#720e0e"></span><span class="color-swatch" style="background-color:#170303"></span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="palette" value="blue" id="blue">
+                    <label for="blue" title="Cool Blue">
+                        <span class="color-swatch" style="background-color:#c8d7ea"></span><span class="color-swatch" style="background-color:#5988bf"></span><span class="color-swatch" style="background-color:#325681"></span><span class="color-swatch" style="background-color:#070c12"></span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="palette" value="yellow" id="yellow">
+                    <label for="yellow" title="Mellow Yellow">
+                        <span class="color-swatch" style="background-color:#fdfbe8"></span><span class="color-swatch" style="background-color:#efe05d"></span><span class="color-swatch" style="background-color:#a29310"></span><span class="color-swatch" style="background-color:#171502"></span>
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Or customize your own:</legend>
+            <div>
+                <input type="radio" name="palette" value="custom" id="custom">
+                <label for="custom" title="Custom">
+                    <label class="color-swatch"><input type="color" value="#dbd1f0"></label><label class="color-swatch"><input type="color" value="#9370db"></label><label class="color-swatch"><input type="color" value="#512888"></label><label class="color-swatch"><input type="color" value="#201036"></label>
+                </label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Choose an image (or drag it onto the Game Boy):</legend>
+            <input type="file" accept=".png,.jpg,.jpeg,.gif">
+            <label><input type="checkbox" id="resize">Resize to Game Boy resolution</label>
+        </fieldset>
+    </form>
+</div>
+
+<div class="box gb">
+    <div id="gameboy">
+        <img id="screen">
+    </div>
+</div>
 
 @code
 {
-    int currentCount = 1;
-
-    void IncrementCount()
+    //Blazor version of "on document ready" so JS on the page doesn't run until the file input is rendered and ready
+    //idea from here: https://github.com/aspnet/Blazor/issues/1084
+    //but it got outdated and had to be adapted per docs here: https://docs.microsoft.com/en-us/aspnet/core/blazor/javascript-interop
+    protected override async Task OnAfterRenderAsync()
     {
-        currentCount++;
+        //call some JS which sets up the file input with a change handler
+        //which reads the selected file's content into a base64-encoded string
+        //and passes that to ProcessImage below for further processing
+        await jsRuntime.InvokeAsync<string>("onBlazorReady", DotNetObjectRef.Create(this));
+    }
+
+    //JS will call this when a file is selected in the file input
+    [JSInvokable]
+    public string ProcessImage(string base64ImageData, IEnumerable<string> colors)
+    {
+        //Console.WriteLine("Image data received in .NET: " + base64ImageData);
+        //return "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
+
+        var palette = colors.Select(c => Rgba32.FromHex(c));
+
+        using (var inputImage = translator.FromBase64String(base64ImageData))
+        using (var outputImage = converter.Convert(inputImage, palette))
+        {
+            return translator.ToBase64String(outputImage);
+        }
     }
 }

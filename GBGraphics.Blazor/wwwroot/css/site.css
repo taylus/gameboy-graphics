@@ -1,0 +1,65 @@
+﻿body {
+    background: #eee;
+    font-family: Helvetica,sans-serif;
+    font-size: 13pt;
+    text-align: center;
+}
+
+div.box {
+    text-align: left;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    margin: 20px auto;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.gb {
+    padding: 10px 10px 10px 11px;
+}
+
+div.filedrop {
+    background-color: lightgray;
+}
+
+h1, h2 {
+    margin-top: 0;
+}
+
+#gameboy {
+    background-image: url("../img/gameboy-bg.png");
+    width: 295px;
+    height: 487px;
+}
+
+#screen {
+    position: relative;
+    top: 63px;
+    left: 68px;
+    border-radius: 3px;
+    width: 160px;
+    height: 144px;
+    display: none;
+}
+
+.color-swatch {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+input[type=color] {
+    /* use opacity: 0 since mobile Safari won't activate a
+     visibility: hidden or display: none input when you tap the label:
+     https://stackoverflow.com/a/11471224/7512368 */
+    opacity: 0;
+}
+
+input[type=radio] {
+    margin-top: -16px;
+    vertical-align: middle;
+}
