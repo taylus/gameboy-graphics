@@ -4,8 +4,8 @@ Convert images into the Game Boy's color palette -- written in .NET Core using [
 ![sample input](screenshots/example_input.png "sample input")
 ![sample output](screenshots/example_output.png "sample output")
 
-[![Build Status](https://travis-ci.org/taylus/gameboy-graphics.svg?branch=travis-ci)](https://travis-ci.org/taylus/gameboy-graphics)
-[![Coverage Status](https://coveralls.io/repos/github/taylus/gameboy-graphics/badge.svg?branch=travis-ci)](https://coveralls.io/github/taylus/gameboy-graphics?branch=travis-ci)
+[![Build Status](https://travis-ci.org/taylus/gameboy-graphics.svg?branch=master)](https://travis-ci.org/taylus/gameboy-graphics)
+[![Coverage Status](https://coveralls.io/repos/github/taylus/gameboy-graphics/badge.svg?branch=master)](https://coveralls.io/github/taylus/gameboy-graphics?branch=master)
 
 ## Command line usage
 ```
