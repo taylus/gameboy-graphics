@@ -5,6 +5,10 @@ body {
     text-align: center;
 }
 
+.short-text {
+    display: none;
+}
+
 div.box {
     text-align: left;
     background-color: white;
@@ -17,13 +21,38 @@ div.box {
 }
 
 div.gb {
-    padding: 12px 16px;
+    padding: 15px;
+}
+
+@media only screen and (max-width: 991px) {
+    div.box {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    div.gb {
+        margin-top: 0;
+        display: block;
+    }
+
+    #gameboy {
+        margin: 0 auto;
+    }
+
+    .short-text { 
+        display: inline-block;
+    }
+
+    .full-text { 
+        display: none;
+    }
 }
 
 #download {
-    margin-top: 4px;
+    margin-top: 12px;
     width: 100%;
-    line-height: 24px;
+    padding: 2px;
+    font-size: 16pt;
 }
 
 div.filedrop {
@@ -35,7 +64,7 @@ h1, h2 {
 }
 
 #gameboy {
-    background-image: url("../img/gameboy-bg.png");
+    background: url("../img/gameboy-bg.png") no-repeat center;
     width: 295px;
     height: 487px;
 }
@@ -51,8 +80,8 @@ h1, h2 {
 }
 
 .color-swatch {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     display: inline-block;
     margin: 0;
     padding: 0;
@@ -66,8 +95,12 @@ input[type=color] {
 }
 
 input[type=radio] {
-    margin-top: -16px;
+    margin-top: -22px;
     vertical-align: middle;
+}
+
+input#custom {
+    margin-top: 0;
 }
 
 footer {
