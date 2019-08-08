@@ -1,6 +1,9 @@
 /* jshint esversion: 6, browser: true, devel: true */
 (function (options) {
     "use strict";
+    var screen = document.getElementById("screen");
+    var context = screen.getContext("2d");
+
     document.addEventListener("DOMContentLoaded", function () {
         //colorize the image when the input file changes
         var input = document.querySelector("input[type=file]");
@@ -14,6 +17,13 @@
 
         //or when the resize checkbox changes while an input file is selected
         document.getElementById("resize").addEventListener("change", () => handleFile(latestFile));
+
+        //show the colorized image (to download it)
+        var downloadButton = document.getElementById("download");
+        downloadButton.disabled = true;
+        downloadButton.addEventListener("click", () => {
+            window.location = screen.toDataURL("image/png");
+        });
 
         function handleFile(file) {
             if (!file) return;
@@ -30,9 +40,6 @@
 
             latestFile = file;
 
-            var screen = document.getElementById("screen");
-            var context = screen.getContext("2d");
-
             var palette = getSelectedColors().map((color) => hexToRgb(color));
             var resize = document.getElementById("resize").checked;
 
@@ -44,8 +51,9 @@
                     image.addEventListener("load", function () {
                         colorize(image, palette, resize);
                         screen.style.display = "inline";
-                        screen.focus();
                         screen.scrollIntoView();
+                        downloadButton.disabled = false;
+                        downloadButton.focus();
                     });
                 }
             });
