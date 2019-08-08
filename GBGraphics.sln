@@ -19,6 +19,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GBGraphics.StaticSite", "GBGraphics.StaticSite", "{2452FCBB-C776-429A-ADE5-65E5ABB1C9B5}"
+	ProjectSection(SolutionItems) = preProject
+		GBGraphics.StaticSite\index.html = GBGraphics.StaticSite\index.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{189A68F5-EA8A-45C4-83E7-A09D1D49380A}"
+	ProjectSection(SolutionItems) = preProject
+		GBGraphics.StaticSite\css\site.css = GBGraphics.StaticSite\css\site.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{44E7331E-DDCC-4127-A91E-52E0B29DBBB5}"
+	ProjectSection(SolutionItems) = preProject
+		GBGraphics.StaticSite\js\site.js = GBGraphics.StaticSite\js\site.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "img", "img", "{105A54F3-29E3-4AAD-96D1-67DE9525DA69}"
+	ProjectSection(SolutionItems) = preProject
+		GBGraphics.StaticSite\img\gameboy-bg.png = GBGraphics.StaticSite\img\gameboy-bg.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +68,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2452FCBB-C776-429A-ADE5-65E5ABB1C9B5} = {9F63C541-49AE-4CF3-A7C1-D6D524547EC0}
+		{189A68F5-EA8A-45C4-83E7-A09D1D49380A} = {2452FCBB-C776-429A-ADE5-65E5ABB1C9B5}
+		{44E7331E-DDCC-4127-A91E-52E0B29DBBB5} = {2452FCBB-C776-429A-ADE5-65E5ABB1C9B5}
+		{105A54F3-29E3-4AAD-96D1-67DE9525DA69} = {2452FCBB-C776-429A-ADE5-65E5ABB1C9B5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D99FD19-FAF1-45E1-B015-F4E655736763}

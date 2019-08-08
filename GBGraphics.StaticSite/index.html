@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Description" content="Convert images into Game Boy colors!">
+    <title>Game Boy Graphics Toy</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+    <div class="box">
+        <h2>Game Boy Graphics Toy</h2>
+        <p>Choose an image from your computer and it will be recolored and displayed here.</p>
+        <p>The image never leaves your computer -- this all happens in your browser.</p>
+        <p>This project is <a href="https://github.com/taylus/gameboy-graphics">open-source</a> and part of my work in <a href="https://github.com/taylus/gameboy-dev">Game Boy development</a>.</p>
+        <form>
+            <fieldset>
+                <legend>Choose a color palette:</legend>
+                <div>
+                    <input type="radio" name="palette" value="green" id="green" checked>
+                    <label for="green" title="Original Green">
+                        <span class="color-swatch" style="background-color:#e0f8d0"></span><span class="color-swatch" style="background-color:#88c070"></span><span class="color-swatch" style="background-color:#346856"></span><span class="color-swatch" style="background-color:#081820"></span>
+                    </label>
+                    <div>
+                        <input type="radio" name="palette" value="gray" id="gray">
+                        <label for="gray" title="Grayscale">
+                            <span class="color-swatch" style="background-color:#e8e8e8"></span><span class="color-swatch" style="background-color:#a0a0a0"></span><span class="color-swatch" style="background-color:#585858"></span><span class="color-swatch" style="background-color:#101010"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" name="palette" value="brown" id="brown">
+                        <label for="brown" title="Boring Brown">
+                            <span class="color-swatch" style="background-color:#f8e088"></span><span class="color-swatch" style="background-color:#d8af58"></span><span class="color-swatch" style="background-color:#987838"></span><span class="color-swatch" style="background-color:#322710"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" name="palette" value="red" id="red">
+                        <label for="red" title="Fiery Red">
+                            <span class="color-swatch" style="background-color:#fce8e8"></span><span class="color-swatch" style="background-color:#e63232"></span><span class="color-swatch" style="background-color:#720e0e"></span><span class="color-swatch" style="background-color:#170303"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" name="palette" value="blue" id="blue">
+                        <label for="blue" title="Cool Blue">
+                            <span class="color-swatch" style="background-color:#c8d7ea"></span><span class="color-swatch" style="background-color:#5988bf"></span><span class="color-swatch" style="background-color:#325681"></span><span class="color-swatch" style="background-color:#070c12"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" name="palette" value="yellow" id="yellow">
+                        <label for="yellow" title="Mellow Yellow">
+                            <span class="color-swatch" style="background-color:#fdfbe8"></span><span class="color-swatch" style="background-color:#efe05d"></span><span class="color-swatch" style="background-color:#a29310"></span><span class="color-swatch" style="background-color:#171502"></span>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Or customize your own:</legend>
+                <div>
+                    <input type="radio" name="palette" value="custom" id="custom">
+                    <label for="custom" title="Custom">
+                        <label class="color-swatch"><input type="color" value="#dbd1f0"></label><label class="color-swatch"><input type="color" value="#9370db"></label><label class="color-swatch"><input type="color" value="#512888"></label><label class="color-swatch"><input type="color" value="#201036"></label>
+                    </label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Choose an image (or drag it onto the Game Boy):</legend>
+                <input type="file" accept=".png,.jpg,.jpeg,.gif">
+            </fieldset>
+        </form>
+    </div>
+    <div class="box gb">
+        <div id="gameboy">
+            <canvas id="screen" width="160" height="144"></canvas>
+        </div>
+    </div>
+    <script src="js/site.js"></script>
+</body>
+</html>

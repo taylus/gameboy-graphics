@@ -341,3 +341,6 @@ healthchecksdb
 
 # Coverlet code coverage results
 *.opencover.xml
+
+# Mongoose web server
+mongoose*.exe
