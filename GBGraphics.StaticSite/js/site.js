@@ -33,15 +33,16 @@
                 return;
             }
 
+            var resizeCheckbox = document.getElementById("resize");
+            var resize = resizeCheckbox.checked;
             if (file.size > options.fileSizeLimit) {
-                alert("Please use a file smaller than " + formatSizeForDisplay(options.fileSizeLimit) + ".");
-                return;
+                resize = true;
+                resizeCheckbox.checked = resize;
             }
 
             latestFile = file;
 
             var palette = getSelectedColors().map((color) => hexToRgb(color));
-            var resize = document.getElementById("resize").checked;
 
             var image = new Image();
             var reader = new FileReader();
