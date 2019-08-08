@@ -7,7 +7,17 @@ Convert images into the Game Boy's color palette -- written in .NET Core using [
 [![Build Status](https://travis-ci.org/taylus/gameboy-graphics.svg?branch=master)](https://travis-ci.org/taylus/gameboy-graphics)
 [![Coverage Status](https://coveralls.io/repos/github/taylus/gameboy-graphics/badge.svg?branch=master)](https://coveralls.io/github/taylus/gameboy-graphics?branch=master)
 
+This repository consists of a core library used by multiple different projects formats and served as an experiment in image processing on both the client and server using JavaScript, ASP.NET Core MVC, Blazor, and Azure Functions.
+
+## Web application
+[Click here for a live demo of the `GBGraphics.StaticSite` project.](https://legacy.codes/gameboy-graphics/GBGraphics.StaticSite/)
+
+Alternatively, run the `GBGraphics.Web` project from Visual Studio or the .NET Core CLI:
+
+![web app screenshot](screenshots/screenshot_webapp.png "web app screenshot")
+
 ## Command line usage
+Run `GBGraphics.Console` from the command line:
 ```
 gbgfx [-r] [-o output.png] input.png
 ```
@@ -20,12 +30,7 @@ gbgfx [-r] [-o output.png] input.png
 
 &nbsp;&nbsp;&nbsp;&nbsp;The name of the output file.
 
-## Web application
-Alternatively, run the `GBGraphics.Web` web application for a GUI:
-
-![web app screenshot](screenshots/screenshot_webapp.png "web app screenshot")
-
-## Displaying images on a Game Boy
-See here for instructions on how to [build a ROM](building_a_rom.md) which displays images produced by `gbgfx`!
+## Display images on a Game Boy
+See here for instructions on how to [build a ROM](building_a_rom.md) which displays images produced by `gbgfx`.
 
 ![displaying images on a Game Boy](screenshots/running_on_gbc.jpg "displaying images on a Game Boy")
