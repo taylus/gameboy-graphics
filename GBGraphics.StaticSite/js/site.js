@@ -53,7 +53,6 @@
                     image.addEventListener("load", function () {
                         colorize(image, palette, resize);
                         screen.style.display = "inline";
-                        screen.scrollIntoView();
                         downloadButton.disabled = false;
                         downloadButton.focus();
                     });
