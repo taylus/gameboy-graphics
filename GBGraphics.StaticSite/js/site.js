@@ -54,7 +54,6 @@
                         colorize(image, palette, resize);
                         screen.style.display = "inline";
                         downloadButton.disabled = false;
-                        downloadButton.focus();
                     });
                 }
             });
