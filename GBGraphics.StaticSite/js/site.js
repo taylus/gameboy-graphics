@@ -22,7 +22,8 @@
         var downloadButton = document.getElementById("download");
         downloadButton.disabled = true;
         downloadButton.addEventListener("click", () => {
-            window.location = screen.toDataURL("image/png");
+            var win = window.open();
+            win.document.write("<iframe src='" + screen.toDataURL("image/png") + "' frameborder='0' style='border: 0; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;' allowfullscreen></iframe>");
         });
 
         function handleFile(file) {
@@ -35,7 +36,7 @@
 
             var resizeCheckbox = document.getElementById("resize");
             var resize = resizeCheckbox.checked;
-            if (file.size > options.fileSizeLimit) {
+            if (file.size > options.fileSizeBeforeResizing) {
                 resize = true;
                 resizeCheckbox.checked = resize;
             }
@@ -175,11 +176,5 @@
             var b = parseInt(hex.slice(5, 7), 16);
             return { r: r, g: g, b: b, a: 255 };
         }
-
-        function formatSizeForDisplay(bytes) {
-            if (bytes < 1024) return bytes + " bytes";
-            if (bytes < 1024 * 1024) return (bytes / 1024) + " KB";
-            return (bytes / (1024 * 1024)) + " MB";
-        }
     });
-}({ fileSizeLimit: 1024 * 1024 * 2, screenWidth: 160, screenHeight: 144 }));
+}({ fileSizeBeforeResizing: 1024 * 1024 * 2, screenWidth: 160, screenHeight: 144 }));
