@@ -38,6 +38,8 @@ h1, h2 {
     position: relative;
     top: 63px;
     left: 68px;
+    width: 160px;
+    height: 144px;
     border-radius: 3px;
     display: none;
 }

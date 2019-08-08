@@ -65,12 +65,13 @@
             <fieldset>
                 <legend>Choose an image (or drag it onto the Game Boy):</legend>
                 <input type="file" accept=".png,.jpg,.jpeg,.gif">
+                <label title="Speeds up performance for large images."><input type="checkbox" id="resize">Resize to Game Boy resolution</label>
             </fieldset>
         </form>
     </div>
     <div class="box gb">
         <div id="gameboy">
-            <canvas id="screen" width="160" height="144"></canvas>
+            <canvas id="screen"></canvas>
         </div>
     </div>
     <script src="js/site.js"></script>

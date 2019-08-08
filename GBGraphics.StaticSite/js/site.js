@@ -12,6 +12,9 @@
             radio.addEventListener("change", () => handleFile(latestFile));
         });
 
+        //or when the resize checkbox changes while an input file is selected
+        document.getElementById("resize").addEventListener("change", () => handleFile(latestFile));
+
         function handleFile(file) {
             if (!file) return;
 
@@ -31,6 +34,7 @@
             var context = screen.getContext("2d");
 
             var palette = getSelectedColors().map((color) => hexToRgb(color));
+            var resize = document.getElementById("resize").checked;
 
             var image = new Image();
             var reader = new FileReader();
@@ -38,7 +42,7 @@
                 if (event.target.readyState == FileReader.DONE) {
                     image.src = event.target.result;
                     image.addEventListener("load", function () {
-                        colorize(image, palette);
+                        colorize(image, palette, resize);
                         screen.style.display = "inline";
                         screen.focus();
                         screen.scrollIntoView();
@@ -47,7 +51,15 @@
             });
             reader.readAsDataURL(file);
 
-            function colorize(image, palette) {
+            function colorize(image, palette, resize) {
+                if (resize) {
+                    screen.width = options.screenWidth;
+                    screen.height = options.screenHeight;
+                }
+                else {
+                    screen.width = image.width;
+                    screen.height = image.height;
+                }
                 context.drawImage(image, 0, 0, screen.width, screen.height);
                 var imageData = context.getImageData(0, 0, screen.width, screen.height);
                 var data = imageData.data;
@@ -161,4 +173,4 @@
             return (bytes / (1024 * 1024)) + " MB";
         }
     });
-}({ fileSizeLimit: 1024 * 1024 * 2 }));
+}({ fileSizeLimit: 1024 * 1024 * 2, screenWidth: 160, screenHeight: 144 }));
