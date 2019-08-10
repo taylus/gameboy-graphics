@@ -31,6 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{189A68F5-EA8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{44E7331E-DDCC-4127-A91E-52E0B29DBBB5}"
 	ProjectSection(SolutionItems) = preProject
+		GBGraphics.StaticSite\js\exif.js = GBGraphics.StaticSite\js\exif.js
 		GBGraphics.StaticSite\js\site.js = GBGraphics.StaticSite\js\site.js
 	EndProjectSection
 EndProject

@@ -58,9 +58,9 @@
                         image.src = event.target.result;
                         image.addEventListener("load", function () {
                             var colorized = colorize(image, palette, resize, orientation);
-                            options.exif.configureCanvas(screen, image, orientation);
-                            options.exif.configureContext(context, image, orientation);
-                            context.drawImage(colorized, 0, 0, screen.width, screen.height);
+                            options.exif.configureCanvas(screen, colorized, orientation);
+                            options.exif.configureContext(context, colorized, orientation);
+                            context.drawImage(colorized, 0, 0);
                             screen.style.display = "inline";
                             downloadButton.disabled = false;
                         });
@@ -69,22 +69,23 @@
                 reader.readAsDataURL(file);
             });
 
-            function colorize(image, palette, resize) {
+            function colorize(image, palette, resize, orientation) {
                 //do color conversion on an in-memory canvas
                 //since get/putImageData are unaffected by a rotation transform
-                var screen = document.createElement("canvas");
-                var context = screen.getContext("2d");
+                var canvas = document.createElement("canvas");
+                var context = canvas.getContext("2d");
 
                 if (resize) {
-                    screen.width = options.screenWidth;
-                    screen.height = options.screenHeight;
+                    canvas.width = options.screenWidth;
+                    canvas.height = options.screenHeight;
                 }
                 else {
-                    screen.width = image.width;
-                    screen.height = image.height;
+                    canvas.width = image.width;
+                    canvas.height = image.height;
                 }
-                context.drawImage(image, 0, 0, screen.width, screen.height);
-                var imageData = context.getImageData(0, 0, screen.width, screen.height);
+
+                context.drawImage(image, 0, 0, canvas.width, canvas.height);
+                var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
                 var data = imageData.data;
                 for (var i = 0; i < data.length; i += 4) {
                     var color = {
@@ -100,7 +101,7 @@
                     data[i + 3] = closestColor.a;
                 }
                 context.putImageData(imageData, 0, 0);
-                return screen;
+                return canvas;
 
                 function getClosestColor(color, palette, colorMappingFunc) {
                     colorMappingFunc = colorMappingFunc || euclideanSquared;
