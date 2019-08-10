@@ -2,12 +2,10 @@
 /* globals exif */
 (function (options) {
     "use strict";
-    var screen = document.getElementById("screen");
-    var context = screen.getContext("2d");
-    var latestFile;
-    var downloadButton;
-
+    var screen, context, latestFile;
     document.addEventListener("DOMContentLoaded", function () {
+        screen = document.getElementById("screen");
+        context = screen.getContext("2d");
         (function registerHandlers() {
             //colorize the image when the input file changes
             var input = document.querySelector("input[type=file]");
@@ -24,14 +22,6 @@
             //activate the file input by clicking/tapping on the Game Boy
             var gb = document.getElementById("gameboy");
             gb.addEventListener("click", () => input.click());
-
-            //show the colorized image (to download it)
-            downloadButton = document.getElementById("download");
-            downloadButton.disabled = true;
-            downloadButton.addEventListener("click", () => {
-                var win = window.open();
-                win.document.write("<iframe src='" + screen.toDataURL("image/png") + "' frameborder='0' style='border: 0; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;' allowfullscreen></iframe>");
-            });
 
             //fill color palette labels with their (hidden) color input's color
             //since <input type="color"> looks gross and is largely unstylable
@@ -108,7 +98,6 @@
                         options.exif.configureContext(context, colorized, orientation);
                         context.drawImage(colorized, 0, 0);
                         screen.style.display = "inline";
-                        downloadButton.disabled = false;
                     });
                 }
             });
