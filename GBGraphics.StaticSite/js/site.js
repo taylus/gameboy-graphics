@@ -1,4 +1,5 @@
 /* jshint esversion: 6, browser: true, devel: true */
+/* globals exif */
 (function (options) {
     "use strict";
     var screen = document.getElementById("screen");
@@ -49,21 +50,31 @@
 
             var palette = getSelectedColors().map((color) => hexToRgb(color));
 
-            var image = new Image();
-            var reader = new FileReader();
-            reader.addEventListener("load", function (event) {
-                if (event.target.readyState == FileReader.DONE) {
-                    image.src = event.target.result;
-                    image.addEventListener("load", function () {
-                        colorize(image, palette, resize);
-                        screen.style.display = "inline";
-                        downloadButton.disabled = false;
-                    });
-                }
+            options.exif.getOrientation(file, (orientation) => {
+                var image = new Image();
+                var reader = new FileReader();
+                reader.addEventListener("load", function (event) {
+                    if (event.target.readyState == FileReader.DONE) {
+                        image.src = event.target.result;
+                        image.addEventListener("load", function () {
+                            var colorized = colorize(image, palette, resize, orientation);
+                            options.exif.configureCanvas(screen, image, orientation);
+                            options.exif.configureContext(context, image, orientation);
+                            context.drawImage(colorized, 0, 0, screen.width, screen.height);
+                            screen.style.display = "inline";
+                            downloadButton.disabled = false;
+                        });
+                    }
+                });
+                reader.readAsDataURL(file);
             });
-            reader.readAsDataURL(file);
 
             function colorize(image, palette, resize) {
+                //do color conversion on an in-memory canvas
+                //since get/putImageData are unaffected by a rotation transform
+                var screen = document.createElement("canvas");
+                var context = screen.getContext("2d");
+
                 if (resize) {
                     screen.width = options.screenWidth;
                     screen.height = options.screenHeight;
@@ -89,6 +100,7 @@
                     data[i + 3] = closestColor.a;
                 }
                 context.putImageData(imageData, 0, 0);
+                return screen;
 
                 function getClosestColor(color, palette, colorMappingFunc) {
                     colorMappingFunc = colorMappingFunc || euclideanSquared;
@@ -179,4 +191,9 @@
             return { r: r, g: g, b: b, a: 255 };
         }
     });
-}({ fileSizeBeforeResizing: 1024 * 1024 * 2, screenWidth: 160, screenHeight: 144 }));
+}({ 
+    fileSizeBeforeResizing: 1024 * 1024 * 2, 
+    screenWidth: 160,
+    screenHeight: 144,
+    exif: exif 
+}));
