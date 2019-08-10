@@ -18,6 +18,10 @@
         //or when the resize checkbox changes while an input file is selected
         document.getElementById("resize").addEventListener("change", () => handleFile(latestFile));
 
+        //activate the file input by clicking/tapping on the Game Boy
+        var gb = document.getElementById("gameboy");
+        gb.addEventListener("click", () => input.click());
+
         //show the colorized image (to download it)
         var downloadButton = document.getElementById("download");
         downloadButton.disabled = true;
