@@ -1,8 +1,13 @@
 /* jshint browser: true, bitwise: false */
 /* exported exif */
+/**
+ * Contains functions for parsing image orientation from EXIF metadata.
+ * Also provides functions for configuring a canvas and context for drawing the image properly oriented.
+ * @see https://stackoverflow.com/questions/7584794/accessing-jpeg-exif-rotation-data-in-javascript-on-the-client-side
+ * @see https://stackoverflow.com/questions/20600800/js-client-side-exif-orientation-rotate-and-mirror-jpeg-images/40867559#40867559
+ */
 var exif = function () {
     "use strict";
-    //https://stackoverflow.com/questions/7584794/accessing-jpeg-exif-rotation-data-in-javascript-on-the-client-side/32490603#32490603
     function getOrientation(file, callback) {
         var reader = new FileReader();
         reader.onload = function (e) {
@@ -41,28 +46,26 @@ var exif = function () {
         reader.readAsArrayBuffer(file);
     }
 
-    //https://stackoverflow.com/a/40867559/7512368
-    function configureCanvas(canvas, image, orientation) {
+    function configureCanvas(canvas, source, orientation) {
         if (orientation >= 5 && orientation <= 8) {
-            canvas.width = image.height;
-            canvas.height = image.width;
+            canvas.width = source.height;
+            canvas.height = source.width;
         }
         else {
-            canvas.width = image.width;
-            canvas.height = image.height;
+            canvas.width = source.width;
+            canvas.height = source.height;
         }
     }
 
-    //https://stackoverflow.com/a/40867559/7512368
-    function configureContext(context, image, orientation) {
+    function configureContext(context, source, orientation) {
         switch (orientation) {
-            case 2: context.transform(-1, 0, 0, 1, image.width, 0); break;
-            case 3: context.transform(-1, 0, 0, -1, image.width, image.height); break;
-            case 4: context.transform(1, 0, 0, -1, 0, image.height); break;
+            case 2: context.transform(-1, 0, 0, 1, source.width, 0); break;
+            case 3: context.transform(-1, 0, 0, -1, source.width, source.height); break;
+            case 4: context.transform(1, 0, 0, -1, 0, source.height); break;
             case 5: context.transform(0, 1, 1, 0, 0, 0); break;
-            case 6: context.transform(0, 1, -1, 0, image.height, 0); break;
-            case 7: context.transform(0, -1, -1, 0, image.height, image.width); break;
-            case 8: context.transform(0, -1, 1, 0, 0, image.width); break;
+            case 6: context.transform(0, 1, -1, 0, source.height, 0); break;
+            case 7: context.transform(0, -1, -1, 0, source.height, source.width); break;
+            case 8: context.transform(0, -1, 1, 0, 0, source.width); break;
         }
     }
 
